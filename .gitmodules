@@ -1,0 +1,3 @@
+[submodule "driver/STM32L496VGT6P"]
+	path = driver/STM32L496VGT6P
+	url = https://github.com/bassem-mostafa/CRC_STM32L496VGT6P.git

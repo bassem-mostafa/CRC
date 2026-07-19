@@ -1,3 +1,6 @@
 [submodule "driver/STM32L496VGT6P"]
 	path = driver/STM32L496VGT6P
 	url = https://github.com/bassem-mostafa/CRC_STM32L496VGT6P.git
+[submodule "port/Flow_Meter"]
+	path = port/Flow_Meter
+	url = https://github.com/bassem-mostafa/CRC_Flow_Meter.git

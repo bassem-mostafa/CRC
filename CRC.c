@@ -59,76 +59,22 @@
 // #### Private Type(s) ########################################################
 // #############################################################################
 
-typedef struct CRC_Context
-{
-} CRC_Context_t;
-
 // #############################################################################
 // #### Private Method(s) Prototype ############################################
 // #############################################################################
-
-static CRC_Status_t CRC_Context_Initialize( void );
-static CRC_Status_t CRC_Context_Cycle( void );
-static CRC_Status_t CRC_Context_DeInitialize( void );
 
 // #############################################################################
 // #### Private Variable(s) ####################################################
 // #############################################################################
 
-static CRC_Context_t CRC_Context;
-
 // #############################################################################
 // #### Private Method(s) ######################################################
 // #############################################################################
 
-static CRC_Status_t CRC_Context_Initialize( void )
-{
-    CRC_Status_t CRC_Status = CRC_Status_Success;
-
-    do
-    {
-        CRC_Trace( "%s( void )", __FUNCTION__ );
-
-        UTIL_UNUSED( CRC_Context );
-    }
-    while ( 0 );
-
-    return CRC_Status;
-}
-
-static CRC_Status_t CRC_Context_Cycle( void )
-{
-    CRC_Status_t CRC_Status = CRC_Status_Success;
-
-    do
-    {
-        CRC_Trace( "%s( void )", __FUNCTION__ );
-
-        UTIL_UNUSED( CRC_Context );
-    }
-    while ( 0 );
-
-    return CRC_Status;
-}
-
-static CRC_Status_t CRC_Context_DeInitialize( void )
-{
-    CRC_Status_t CRC_Status = CRC_Status_Success;
-
-    do
-    {
-        CRC_Trace( "%s( void )", __FUNCTION__ );
-
-        UTIL_UNUSED( CRC_Context );
-    }
-    while ( 0 );
-
-    return CRC_Status;
-}
-
 // #############################################################################
 // #### Public Method(s) #######################################################
 // #############################################################################
+
 CRC_Status_t CRC_Initialize( CRC_t CRCx )
 {
     CRC_Status_t Status = CRC_Status_Success;
@@ -137,11 +83,6 @@ CRC_Status_t CRC_Initialize( CRC_t CRCx )
     do
     {
         CRC_Trace( "%s( CRCx=%d )", __FUNCTION__, CRCx );
-
-        if ( ( Status = CRC_Context_Initialize( ) ) != CRC_Status_Success )
-        {
-            break;
-        }
 
         CRC_t CRC_start = ( CRCx == CRC_All ? CRC_Null : CRCx );
         CRC_t CRC_end = ( CRCx == CRC_All ? CRC_Count : CRCx + 1 );
@@ -166,11 +107,6 @@ CRC_Status_t CRC_Cycle( CRC_t CRCx )
     do
     {
         CRC_Trace( "%s( CRCx=%d )", __FUNCTION__, CRCx );
-
-        if ( ( Status = CRC_Context_Cycle( ) ) != CRC_Status_Success )
-        {
-            break;
-        }
 
         CRC_t CRC_start = ( CRCx == CRC_All ? CRC_Null : CRCx );
         CRC_t CRC_end = ( CRCx == CRC_All ? CRC_Count : CRCx + 1 );
@@ -204,11 +140,6 @@ CRC_Status_t CRC_DeInitialize( CRC_t CRCx )
             {
                 Status = CRC_Status;
             }
-        }
-
-        if ( ( Status = CRC_Context_DeInitialize( ) ) != CRC_Status_Success )
-        {
-            break;
         }
     }
     while ( 0 );
@@ -257,7 +188,7 @@ CRC_Status_t CRC_Compute( CRC_t CRCx, CRC_Data_t * Data, CRC_DataLength_t DataLe
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char CRC_VERSION[] = "0.0.0.v20260719-2341";
+const char CRC_VERSION[] = "0.0.0.v20260818-0345";
 
 // #############################################################################
 // #### File Guard #############################################################

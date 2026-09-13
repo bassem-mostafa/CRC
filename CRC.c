@@ -78,20 +78,14 @@
 CRC_Status_t CRC_Initialize( CRC_t CRCx )
 {
     CRC_Status_t Status = CRC_Status_Success;
-    CRC_Status_t CRC_Status = CRC_Status_Success;
 
     do
     {
         CRC_Trace( "%s( CRCx=%d )", __FUNCTION__, CRCx );
 
-        CRC_t CRC_start = ( CRCx == CRC_All ? CRC_Null : CRCx );
-        CRC_t CRC_end = ( CRCx == CRC_All ? CRC_Count : CRCx + 1 );
-        for ( CRC_t CRC_x = CRC_start; CRC_x < CRC_end; ++CRC_x )
+        if ( ( Status = CRC_Port_Initialize( CRCx ) ) != CRC_Status_Success )
         {
-            if ( ( CRC_Status = CRC_Port_Initialize( CRC_x ) ) != CRC_Status_Success )
-            {
-                Status = CRC_Status;
-            }
+            break;
         }
     }
     while ( 0 );
@@ -102,20 +96,14 @@ CRC_Status_t CRC_Initialize( CRC_t CRCx )
 CRC_Status_t CRC_Cycle( CRC_t CRCx )
 {
     CRC_Status_t Status = CRC_Status_Success;
-    CRC_Status_t CRC_Status = CRC_Status_Success;
 
     do
     {
         CRC_Trace( "%s( CRCx=%d )", __FUNCTION__, CRCx );
 
-        CRC_t CRC_start = ( CRCx == CRC_All ? CRC_Null : CRCx );
-        CRC_t CRC_end = ( CRCx == CRC_All ? CRC_Count : CRCx + 1 );
-        for ( CRC_t CRC_x = CRC_start; CRC_x < CRC_end; ++CRC_x )
+        if ( ( Status = CRC_Port_Cycle( CRCx ) ) != CRC_Status_Success )
         {
-            if ( ( CRC_Status = CRC_Port_Cycle( CRC_x ) ) != CRC_Status_Success )
-            {
-                Status = CRC_Status;
-            }
+            break;
         }
     }
     while ( 0 );
@@ -126,20 +114,14 @@ CRC_Status_t CRC_Cycle( CRC_t CRCx )
 CRC_Status_t CRC_DeInitialize( CRC_t CRCx )
 {
     CRC_Status_t Status = CRC_Status_Success;
-    CRC_Status_t CRC_Status = CRC_Status_Success;
 
     do
     {
         CRC_Trace( "%s( CRCx=%d )", __FUNCTION__, CRCx );
 
-        CRC_t CRC_start = ( CRCx == CRC_All ? CRC_Null : CRCx );
-        CRC_t CRC_end = ( CRCx == CRC_All ? CRC_Count : CRCx + 1 );
-        for ( CRC_t CRC_x = CRC_start; CRC_x < CRC_end; ++CRC_x )
+        if ( ( Status = CRC_Port_DeInitialize( CRCx ) ) != CRC_Status_Success )
         {
-            if ( ( CRC_Status = CRC_Port_DeInitialize( CRC_x ) ) != CRC_Status_Success )
-            {
-                Status = CRC_Status;
-            }
+            break;
         }
     }
     while ( 0 );
@@ -150,33 +132,14 @@ CRC_Status_t CRC_DeInitialize( CRC_t CRCx )
 CRC_Status_t CRC_Compute( CRC_t CRCx, CRC_Data_t * Data, CRC_DataLength_t DataLength, CRC_Value_t * Value )
 {
     CRC_Status_t Status = CRC_Status_Success;
-    CRC_Status_t CRC_Status = CRC_Status_Success;
 
     do
     {
         CRC_Trace( "%s( CRCx=%d )", __FUNCTION__, CRCx );
 
-        if ( Value == NULL )
+        if ( ( Status = CRC_Port_Compute( CRCx, Data, DataLength, Value ) ) != CRC_Status_Success )
         {
-            Status = CRC_Status_ArgumentInvalid;
             break;
-        }
-
-        if ( CRCx == CRC_All )
-        {
-            // FIXME Is it required to define a criteria to compute CRC on all peripherals ?
-            Status = CRC_Status_NotSupported;
-            break;
-        }
-
-        CRC_t CRC_start = ( CRCx == CRC_All ? CRC_Null : CRCx );
-        CRC_t CRC_end = ( CRCx == CRC_All ? CRC_Count : CRCx + 1 );
-        for ( CRC_t CRC_x = CRC_start; CRC_x < CRC_end; ++CRC_x )
-        {
-            if ( ( CRC_Status = CRC_Port_Compute( CRC_x, Data, DataLength, Value ) ) != CRC_Status_Success )
-            {
-                Status = CRC_Status;
-            }
         }
     }
     while ( 0 );
@@ -188,7 +151,7 @@ CRC_Status_t CRC_Compute( CRC_t CRCx, CRC_Data_t * Data, CRC_DataLength_t DataLe
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char CRC_VERSION[] = "0.0.0.v20260818-0345";
+const char CRC_VERSION[] = "0.0.0.v20260913-1832";
 
 // #############################################################################
 // #### File Guard #############################################################
